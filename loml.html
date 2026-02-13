@@ -11,12 +11,14 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            /* Soft Pink Gradient */
             background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
             font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center; /* Center vertically since no images */
             color: #5a2a2a;
         }
 
@@ -38,7 +40,7 @@
             100% { top: 110vh; transform: translateX(100px) rotate(360deg); opacity: 0; }
         }
 
-        /* --- 2. MUSIC PLAYER --- */
+        /* --- 2. MUSIC PLAYER BUTTON --- */
         .music-player {
             position: fixed;
             top: 20px;
@@ -54,24 +56,25 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: bold;
+            color: #d81b60;
         }
         .music-player:hover { transform: scale(1.05); background: white; }
-        .icon-play { width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #ff4d4d; }
 
         /* --- 3. MAIN CONTAINER --- */
         .container {
+            position: relative;
             z-index: 10;
             width: 90%;
             max-width: 600px;
-            margin-top: 50px;
             text-align: center;
         }
 
         h1 {
             font-family: 'Parisienne', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #d81b60;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
             animation: float 3s ease-in-out infinite;
         }
@@ -81,15 +84,23 @@
             50% { transform: translateY(-10px); }
         }
 
+        p.subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #884444;
+        }
+
         /* --- 4. THE INTERACTIVE ENVELOPE --- */
         .envelope-wrapper {
             position: relative;
-            height: 300px; /* Adjust based on content */
-            margin: 50px auto;
+            height: 250px;
+            margin: 0 auto;
             cursor: pointer;
             perspective: 1000px;
+            width: 300px;
         }
 
+        /* The Envelope Body */
         .envelope {
             position: relative;
             width: 300px;
@@ -99,16 +110,15 @@
             border-radius: 0 0 10px 10px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             z-index: 5;
-            transition: transform 0.5s;
+            top: 50px;
         }
 
-        .envelope::after { /* Left/Right Folds */
+        /* The Triangles creating the envelope look */
+        .envelope::after { /* Bottom Flap */
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
+            bottom: 0; left: 0;
+            width: 0; height: 0;
             border-left: 150px solid #ff758f;
             border-right: 150px solid #ff758f;
             border-top: 100px solid transparent;
@@ -119,24 +129,21 @@
 
         .lid {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
+            top: 0; left: 0;
+            width: 0; height: 0;
             border-left: 150px solid transparent;
             border-right: 150px solid transparent;
-            border-top: 110px solid #ff8fa3; /* Top Flap Color */
+            border-top: 110px solid #ff8fa3; /* Top Flap */
             transform-origin: top;
             transition: transform 0.5s ease, z-index 0.5s;
             z-index: 7;
         }
 
+        /* The Letter Inside */
         .letter {
             position: absolute;
-            top: 10px;
-            left: 15px;
-            width: 270px;
-            height: 180px;
+            top: 10px; left: 15px;
+            width: 270px; height: 180px;
             background: white;
             border-radius: 5px;
             padding: 20px;
@@ -153,76 +160,60 @@
 
         .letter p {
             font-family: 'Parisienne', cursive;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #d81b60;
-            margin: 0;
+            margin: 5px 0;
+            line-height: 1.2;
         }
 
-        /* Open State */
+        /* --- OPEN ANIMATION STATES --- */
         .envelope-wrapper.open .lid {
             transform: rotateX(180deg);
             z-index: 3;
         }
         
         .envelope-wrapper.open .letter {
-            transform: translateY(-150px);
-            z-index: 8; /* Bring letter to front */
+            transform: translateY(-160px); /* Slides up */
+            z-index: 8;
         }
         
         .click-hint {
-            margin-top: 20px;
+            margin-top: 60px;
             font-size: 0.9rem;
             color: #d81b60;
             opacity: 0.8;
             animation: pulse 1.5s infinite;
         }
 
-        /* --- 5. PHOTO GALLERY --- */
-        .gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-        
-        .photo-card {
-            background: white;
-            padding: 10px 10px 40px 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            transition: transform 0.3s;
-            width: 140px;
-        }
-        .photo-card:nth-child(even) { transform: rotate(2deg); }
-        .photo-card:hover { transform: scale(1.1) rotate(0deg); z-index: 10; }
-        
-        .photo-card img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border: 1px solid #eee;
-        }
-
-        /* --- 6. TIMER --- */
-        .timer-container {
-            margin-top: 40px;
+        /* --- 5. TIMER --- */
+        .timer-box {
+            margin-top: 60px;
             background: rgba(255, 255, 255, 0.6);
             padding: 20px;
             border-radius: 15px;
-            border: 1px solid white;
+            border: 2px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: inline-block;
         }
         
+        .timer-title {
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
         .timer {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #d81b60;
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
         }
         .t-unit { display: flex; flex-direction: column; }
-        .t-label { font-size: 0.8rem; font-weight: 300; color: #555; }
+        .t-label { font-size: 0.8rem; font-weight: 400; color: #555; }
 
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
     </style>
@@ -232,47 +223,33 @@
     <div id="petals-container"></div>
 
     <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
+        </audio>
     <div class="music-player" onclick="toggleMusic()">
-        <div class="icon-play" id="play-icon"></div>
-        <span id="play-text">Play Our Song</span>
+        <span id="play-icon">▶</span>
+        <span id="play-text" style="margin-left: 5px">Play Song</span>
     </div>
 
     <div class="container">
         <h1>Happy Valentine's Day</h1>
-        <p>You survived the chaos. Now here is the truth.</p>
+        <p class="subtitle">I promise I'm not actually a hacker. ❤️</p>
 
         <div class="envelope-wrapper" onclick="toggleEnvelope(this)">
             <div class="envelope">
                 <div class="lid"></div>
                 <div class="letter">
                     <p>To my favorite person,</p>
-                    <p>Life with you is my favorite adventure.</p>
+                    <p>Every moment since January has been magic.</p>
                     <p>I love you! ❤️</p>
                 </div>
             </div>
-            <div class="click-hint">Click to Open</div>
+            <div class="click-hint">Click the envelope to open</div>
         </div>
 
-        <div class="gallery">
-            <div class="photo-card">
-                <img src="https://placehold.co/150x150/pink/white?text=Cutie+1" alt="Us">
-            </div>
-            <div class="photo-card">
-                <img src="https://placehold.co/150x150/red/white?text=Cutie+2" alt="Us">
-            </div>
-            <div class="photo-card">
-                <img src="https://placehold.co/150x150/orange/white?text=Cutie+3" alt="Us">
-            </div>
-        </div>
-
-        <div class="timer-container">
-            <div style="margin-bottom: 10px;">We've been together for:</div>
+        <div class="timer-box">
+            <div class="timer-title">Time since Jan 2nd, 2026</div>
             <div class="timer" id="timer"></div>
         </div>
 
-        <br><br>
     </div>
 
     <script>
@@ -306,29 +283,30 @@
             const icon = document.getElementById('play-icon');
 
             if (audio.paused) {
-                audio.play();
+                // audio.play(); // Uncomment if you add a src
                 text.innerText = "Pause Song";
-                icon.style.borderLeft = "4px solid #ff4d4d";
-                icon.style.height = "12px";
-                icon.style.borderTop = "0";
-                icon.style.borderBottom = "0";
-                icon.style.borderRight = "4px solid #ff4d4d";
-                icon.style.width = "4px";
+                icon.innerText = "⏸";
+                alert("Add an MP3 link in the code to play music! 🎵");
             } else {
                 audio.pause();
-                text.innerText = "Play Our Song";
-                // Reset play icon
-                icon.style = ""; 
+                text.innerText = "Play Song";
+                icon.innerText = "▶";
             }
         }
 
-        // --- 4. RELATIONSHIP TIMER ---
-        // *** IMPORTANT: CHANGE THIS DATE ***
-        const startDate = new Date("2023-01-01"); 
+        // --- 4. RELATIONSHIP TIMER (UPDATED DATE) ---
+        // Date: January 2nd, 2026
+        const startDate = new Date("2026-01-02T00:00:00"); 
 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
+
+            // Check if the date is in the future (safety check)
+            if (diff < 0) {
+                document.getElementById('timer').innerHTML = "Wait for Jan 2nd!";
+                return;
+            }
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
