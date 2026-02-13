@@ -1,248 +1,292 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>!!! DO NOT CLOSE !!! SYSTEM CRITICAL !!!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!! YOUR COMPUTER IS MELTING !!!</title>
     <style>
-        /* --- HORROR LAYER 1: THE SPINNING WORLD --- */
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Trap them inside */
-        }
-        
+        /* --- HORROR 1: THE COMPLEX BACKGROUND --- */
+        /* We layer multiple gradients and animate them to create a vibrating Moire pattern */
         body {
-            background-color: #ffff00;
-            background-image: repeating-linear-gradient(45deg, red, red 10px, yellow 10px, yellow 20px);
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* Trap the user */
+            background-color: yellow;
+            background-image: 
+                repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 20px, #ff0000 20px, #ff0000 40px),
+                repeating-linear-gradient(45deg, #ffff00 0, #ffff00 10px, #ff00ff 10px, #ff00ff 20px);
+            background-blend-mode: difference; /* This creates the headache effect */
+            background-size: 200% 200%;
+            animation: backgroundPanic 2s infinite linear;
+            cursor: none; /* Hide real cursor */
             font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
-            cursor: none; /* NO CURSOR FOR YOU */
-            
-            /* THE VOMIT COMET: Spin the whole page forever */
-            animation: spinWorld 5s linear infinite;
         }
 
-        @keyframes spinWorld {
-            0% { transform: rotate(0deg) scale(0.5); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(0.5); }
+        @keyframes backgroundPanic {
+            0% { background-position: 0% 0%; filter: hue-rotate(0deg); }
+            50% { background-position: 100% 100%; filter: hue-rotate(180deg); }
+            100% { background-position: 0% 0%; filter: hue-rotate(360deg); }
         }
 
-        /* --- HORROR LAYER 2: THE UI GARBAGE --- */
-        
-        /* The Fake Webcam Box (Paranoia inducer) */
-        #webcam-box {
-            position: fixed;
-            top: 10px; right: 10px;
-            width: 300px;
-            height: 200px;
-            background: black;
-            border: 5px solid lime;
-            z-index: 2147483647; /* Max Z-index */
-            color: lime;
-            font-family: monospace;
-            padding: 10px;
-            text-align: center;
-        }
-
-        /* The BSOD Overlay */
-        #bsod {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: blue;
-            color: white;
-            z-index: 2000000000;
-            font-size: 30px;
-            padding: 100px;
-            cursor: none;
-        }
-
-        /* The annoying popup windows */
-        .popup {
-            position: fixed;
-            width: 200px;
-            background: silver;
-            border: 3px outset white;
-            z-index: 999999;
-            box-shadow: 10px 10px 0px black;
-            text-align: center;
-        }
-
-        /* Strobe Light Effect overlay */
-        #strobe {
+        /* --- HORROR 2: THE FULLSCREEN TRAP OVERLAY --- */
+        #trap-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 100000;
-            animation: strobe 0.1s infinite;
-            opacity: 0.2;
-        }
-
-        @keyframes strobe {
-            0% { background: white; }
-            50% { background: black; }
-            100% { background: red; }
-        }
-
-        /* Fake Cursor that lags */
-        #fake-cursor {
-            position: fixed;
-            font-size: 50px;
-            pointer-events: none;
+            background: black;
+            color: red;
             z-index: 9999999999;
-            text-shadow: 2px 2px red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        /* --- HORROR 3: THE CURSOR SWARM --- */
+        .swarm-unit {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: lime;
+            border: 2px solid black;
+            pointer-events: none;
+            z-index: 5000;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- HORROR 4: THE FAKE WINDOWS --- */
+        .window {
+            position: absolute;
+            width: 300px;
+            background: silver;
+            border: 3px outset white;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+        .win-header {
+            background: navy;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            cursor: move;
+            display: flex;
+            justify-content: space-between;
+        }
+        .win-body {
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        /* --- HORROR 5: KEYLOGGER VISUALIZER --- */
+        #keylogger-display {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: red;
+            color: yellow;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 9000;
+            border-top: 5px solid black;
+        }
+
+        /* --- HORROR 6: THE CHAT BOX --- */
+        #hacker-chat {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 250px;
+            height: 300px;
+            background: black;
+            color: lime;
+            border: 5px double lime;
+            z-index: 8000;
+            overflow-y: scroll;
+            padding: 10px;
+            font-family: monospace;
+        }
+
+        /* Glitch text effect */
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
         }
 
     </style>
 </head>
-<body oncontextmenu="return false;" onclick="startTheHell()">
+<body>
 
-    <div id="strobe"></div>
+    <div id="trap-overlay" onclick="activateHell()">
+        <h1 style="font-size: 80px; text-align: center;">⚠️ WARNING ⚠️</h1>
+        <h2>SYSTEM COMPROMISED</h2>
+        <h3 class="glitch">CLICK ANYWHERE TO REPAIR</h3>
+    </div>
 
-    <div id="fake-cursor">🖕</div>
+    <div id="keylogger-display">TYPE ANYTHING... I DARE YOU</div>
 
-    <div id="webcam-box">
-        <b>REC: WEBCAM_01</b>
-        <div style="width: 100%; height: 100px; background: #111; display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 50px;">📷</span>
+    <div id="hacker-chat">
+        <div>> SYSTEM: CONNECTED</div>
+        <div>> HACKER_01 joined.</div>
+    </div>
+
+    <div class="window" style="top: 100px; left: 100px;">
+        <div class="win-header"><span>DELETING SYSTEM32...</span><span>X</span></div>
+        <div class="win-body">
+            <p>Progress:</p>
+            <div style="width: 100%; background: grey; height: 20px;">
+                <div id="del-bar" style="width: 0%; background: blue; height: 100%;"></div>
+            </div>
+            <br>
+            <button onmouseover="moveBtn(this)">CANCEL</button>
         </div>
-        <br>
-        UPLOADING TO FBI... <span id="upload-pct">0%</span>
     </div>
 
-    <div id="bsod">
-        CRITICAL_PROCESS_DIED
-        <br><br>
-        Collecting error info... 0% complete.
-        <br><br>
-        (Do not turn off your computer)
+    <div class="window" style="top: 300px; right: 200px;">
+        <div class="win-header"><span>WEBCAM FEED</span><span>X</span></div>
+        <div class="win-body" style="background: black; color: white; text-align: center;">
+            <br>
+            <h1>👁️</h1>
+            <p>RECORDING...</p>
+        </div>
     </div>
 
-    <center>
-        <h1 style="background: white; border: 5px dashed black; padding: 20px; font-size: 50px;">
-            CLICK TO CLAIM PRIZE!!!
-        </h1>
-        <br>
-        <marquee direction="up" scrollamount="30" style="height: 500px; background: white;">
-            <h2>ERROR ERROR ERROR ERROR</h2>
-            <img src="https://placehold.co/200x200/red/yellow?text=VIRUS" />
-            <h2>DOWNLOAD RAM NOW</h2>
-        </marquee>
-    </center>
-
-    <div id="popup-container"></div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+        <h1 style="font-size: 100px; text-shadow: 5px 5px 0px white;">YOU CANNOT LEAVE</h1>
+    </div>
 
     <script>
-        // --- 1. THE LAG ENGINE ---
-        // Intentionally slows down the browser
-        function wasteCPU() {
-            let x = 0;
-            for(let i=0; i<1000000; i++) {
-                x = Math.sqrt(i * Math.random());
+        // --- 1. FULLSCREEN & ACTIVATION ---
+        function activateHell() {
+            const trap = document.getElementById('trap-overlay');
+            trap.style.display = 'none';
+
+            // FORCE FULLSCREEN (Browser requires this to be in a click event)
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
             }
-        }
-        // Run heavy math every 100ms
-        setInterval(wasteCPU, 100);
 
-
-        // --- 2. CUSTOM CURSOR (With Lag) ---
-        const cursor = document.getElementById('fake-cursor');
-        document.addEventListener('mousemove', (e) => {
-            // Add a slight delay to make it feel "heavy"
-            setTimeout(() => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            }, 100);
-        });
-
-
-        // --- 3. THE MAIN "START" FUNCTION (Requires Click) ---
-        let started = false;
-        function startTheHell() {
-            if (started) return;
-            started = true;
-            
-            // A. Full Screen (Attempt)
-            document.documentElement.requestFullscreen().catch(e=>{});
-
-            // B. Start Audio & TTS
-            playScreech();
-            startTalking();
-
-            // C. Start Popups
-            setInterval(spawnPopup, 500); // 2 popups per second
-            
-            // D. Webcam Logic
-            setInterval(() => {
-                const el = document.getElementById('upload-pct');
-                let val = parseInt(el.innerText);
-                if(val < 99) el.innerText = (val + 1) + "%";
-            }, 1000);
+            // Start the chaos
+            startAudio();
+            startSwarm();
+            startChat();
         }
 
+        // --- 2. THE SWARM (Follows Mouse) ---
+        const swarmSize = 30;
+        const swarm = [];
+        
+        function startSwarm() {
+            for (let i = 0; i < swarmSize; i++) {
+                const div = document.createElement('div');
+                div.className = 'swarm-unit';
+                div.innerText = "ERROR";
+                document.body.appendChild(div);
+                swarm.push({ el: div, x: 0, y: 0, delay: i * 2 });
+            }
 
-        // --- 4. TEXT TO SPEECH (The Voice of Doom) ---
-        function startTalking() {
-            const msg = new SpeechSynthesisUtterance("Critical Error. Virus Detected. Uploading Data. Do not close.");
-            msg.rate = 1.5; // Fast
-            msg.pitch = 0.5; // Deep/Demonic
-            msg.volume = 1;
-            
-            // Loop it manually
-            msg.onend = function() {
-                window.speechSynthesis.speak(msg);
-            };
-            window.speechSynthesis.speak(msg);
+            document.addEventListener('mousemove', (e) => {
+                // The leader follows the mouse, others follow the leader
+                swarm.forEach((unit, index) => {
+                    setTimeout(() => {
+                        unit.el.style.left = (e.clientX + Math.random() * 50 - 25) + 'px';
+                        unit.el.style.top = (e.clientY + Math.random() * 50 - 25) + 'px';
+                    }, unit.delay * 10);
+                });
+            });
         }
 
-
-        // --- 5. AUDIO SCREECH (Web Audio API) ---
-        function playScreech() {
+        // --- 3. AUDIO TORTURE (Oscillators) ---
+        function startAudio() {
             const ctx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
             
-            osc.type = 'sawtooth';
-            // Modulate frequency randomly every 0.1s
+            // Play a random beep every 200ms
             setInterval(() => {
-                osc.frequency.setValueAtTime(200 + Math.random() * 1000, ctx.currentTime);
-            }, 100);
+                if(Math.random() > 0.7) {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = Math.random() > 0.5 ? 'sawtooth' : 'square';
+                    osc.frequency.setValueAtTime(100 + Math.random() * 2000, ctx.currentTime);
+                    
+                    gain.gain.value = 0.1;
+                    
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.1);
+                }
+            }, 200);
+        }
 
-            gain.gain.value = 0.1; // Lower volume slightly so TTS can be heard
+        // --- 4. KEYLOGGER LOGIC ---
+        document.addEventListener('keydown', (e) => {
+            const display = document.getElementById('keylogger-display');
+            display.innerText = `SENDING "${e.key.toUpperCase()}" TO FBI...`;
+            display.style.background = (display.style.background === 'red') ? 'black' : 'red';
             
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-        }
-
-
-        // --- 6. POPUP SPAMMER ---
-        const msgs = ["FILE DELETED", "TROJAN.EXE", "PAY BITCOIN", "SYSTEM32 GONE"];
-        function spawnPopup() {
-            const p = document.createElement('div');
-            p.className = 'popup';
-            p.style.left = Math.random() * window.innerWidth + 'px';
-            p.style.top = Math.random() * window.innerHeight + 'px';
-            p.innerHTML = `
-                <div style="background:navy; color:white; font-weight:bold">ERROR</div>
-                <br>
-                ${msgs[Math.floor(Math.random() * msgs.length)]}
-                <br><br>
-                <button onclick="this.parentElement.remove()">OK</button>
-            `;
-            document.body.appendChild(p);
-
-            // Flash BSOD randomly
-            if(Math.random() > 0.95) {
-                const bsod = document.getElementById('bsod');
-                bsod.style.display = 'block';
-                setTimeout(() => bsod.style.display='none', 200);
-            }
-        }
-
-        // --- 7. EXIT INTENT TRAP ---
-        // If mouse leaves window, alert
-        document.addEventListener('mouseleave', () => {
-            alert("WHERE ARE YOU GOING? I AM NOT DONE WITH YOU.");
+            // Play a typewriter sound (noise burst)
+            startAudio();
         });
+
+        // --- 5. FAKE CHAT BOT ---
+        const chatMsgs = [
+            "I see you...",
+            "Nice password.",
+            "Deleting System32...",
+            "Downloading your photos...",
+            "Why are you sweating?",
+            "Your webcam is on.",
+            "Formatting C: Drive...",
+            "Sending data to China..."
+        ];
+
+        function startChat() {
+            const chatBox = document.getElementById('hacker-chat');
+            setInterval(() => {
+                const div = document.createElement('div');
+                div.innerText = "> HACKER_01: " + chatMsgs[Math.floor(Math.random() * chatMsgs.length)];
+                chatBox.appendChild(div);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 2000);
+        }
+
+        // --- 6. RUNAWAY BUTTON ---
+        window.moveBtn = function(btn) {
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * window.innerWidth + 'px';
+            btn.style.top = Math.random() * window.innerHeight + 'px';
+        }
+
+        // --- 7. PROGRESS BAR OF DOOM ---
+        setInterval(() => {
+            const bar = document.getElementById('del-bar');
+            let w = parseFloat(bar.style.width);
+            if (w >= 100) w = 0;
+            else w += 1;
+            bar.style.width = w + "%";
+        }, 100);
+
+        // --- 8. PREVENT LEAVING (Exit Intent) ---
+        window.onbeforeunload = function() {
+            return "ARE YOU SURE YOU WANT TO DELETE WINDOWS?";
+        };
 
     </script>
 </body>
