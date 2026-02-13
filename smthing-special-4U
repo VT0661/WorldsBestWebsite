@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🤢 CRINGE DETECTED 🤢</title>
+    <style>
+        /* --- 1. THE STATIC FRAME --- */
+        body {
+            margin: 0; width: 100vw; height: 100vh;
+            overflow: hidden;
+            background: #00ff00; /* Lime Green (To clash with pink) */
+            font-family: "Comic Sans MS", cursive;
+            cursor: none;
+        }
+
+        /* --- 2. THE SPINNING VOMIT ZONE --- */
+        #hell-container {
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200vw; height: 200vh;
+            background-color: #ff69b4; /* Hot Pink */
+            
+            /* UGLY PATTERN */
+            background-image: 
+                repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 20px, #ffff00 20px, #ffff00 40px),
+                repeating-linear-gradient(45deg, #ff00ff 0, #ff00ff 10px, #00ff00 10px, #00ff00 20px);
+            background-blend-mode: difference;
+            background-size: 100px 100px;
+
+            /* FAST SPIN (120 RPM) */
+            animation: spinWorld 0.5s linear infinite;
+            z-index: 1;
+            display: none;
+        }
+
+        @keyframes spinWorld {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- 3. THE TRAP BUTTON --- */
+        #trap-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #ff1493; color: yellow;
+            z-index: 2147483647;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; cursor: pointer; text-align: center;
+            border: 20px solid lime;
+        }
+
+        /* --- 4. THE STALKER WEBCAM (SIMP CAM) --- */
+        #cam-container {
+            position: fixed;
+            width: 300px; height: 220px;
+            background: black;
+            border: 10px dashed yellow;
+            z-index: 2000000000;
+            box-shadow: 10px 10px 0px black;
+            pointer-events: none;
+            display: none;
+        }
+
+        #real-video {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: contrast(200%) hue-rotate(90deg); /* Makes them look alien */
+            transform: scaleX(-1);
+        }
+
+        /* --- 5. POPUPS --- */
+        .error-popup {
+            position: fixed; width: 250px;
+            background: white; border: 5px solid red;
+            padding: 5px; z-index: 1000000;
+            box-shadow: 10px 10px 0px black;
+            font-weight: bold; color: black;
+            text-align: center;
+            animation: bounce 0.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- 6. THE TIMER --- */
+        #timer-box {
+            position: fixed; bottom: 20px; right: 20px;
+            font-size: 40px; color: white; background: red;
+            padding: 10px; border: 5px solid yellow;
+            z-index: 2147483647; font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div id="trap-overlay" onclick="activatePrank()">
+        <h1 style="font-size: 60px; text-shadow: 5px 5px 0px black;">💖 HAPPY VALENTINES 💖</h1>
+        <h2>(CLICK FOR A SURPRISE)</h2>
+        <h3>⚠️ WARNING: CONTAINS CRINGE ⚠️</h3>
+    </div>
+
+    <div id="cam-container">
+        <video id="real-video" autoplay playsinline muted></video>
+        <div style="position:absolute; top:0; width:100%; background:red; color:white; font-weight:bold; text-align:center;">
+            🚨 SIMP DETECTED 🚨
+        </div>
+    </div>
+
+    <div style="position: fixed; top: 0; width: 100%; z-index: 900000; background: #ff00ff; color: yellow;">
+        <marquee scrollamount="60" direction="right">
+            <h1>EW LOVE --- GROSS --- GET A ROOM --- CRINGE LEVEL 100% --- STOP HOLDING HANDS --- 🤮🤮🤮</h1>
+        </marquee>
+    </div>
+
+    <div id="timer-box">
+        REDIRECTING IN: <span id="time-left">60</span>
+    </div>
+
+    <div id="hell-container"></div>
+
+    <script>
+        // --- A. ACTIVATION ---
+        async function activatePrank() {
+            document.getElementById('trap-overlay').style.display = 'none';
+            document.getElementById('hell-container').style.display = 'block';
+            document.getElementById('cam-container').style.display = 'block';
+            document.getElementById('timer-box').style.display = 'block';
+
+            // Fullscreen
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) elem.requestFullscreen();
+
+            // Camera
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const video = document.getElementById('real-video');
+                video.srcObject = stream;
+            } catch (err) {
+                alert("LET ME SEE THE CRINGE!");
+            }
+
+            // Start Chaos
+            initAudio();
+            generateCringeJunk();
+            startPopups();
+            startStalker();
+            startTimer();
+
+            // Scream on click
+            document.addEventListener('mousedown', playNoise);
+        }
+
+        // --- B. THE 60 SECOND TIMER ---
+        function startTimer() {
+            let time = 60;
+            const display = document.getElementById('time-left');
+            
+            const interval = setInterval(() => {
+                time--;
+                display.innerText = time;
+                
+                if(time <= 0) {
+                    clearInterval(interval);
+                    window.location.href = "/loml"; // THE REDIRECT
+                }
+            }, 1000);
+        }
+
+        // --- C. AUDIO (THE ANNOYING FRIEND) ---
+        let audioCtx;
+        function initAudio() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // TTS: Mocking them
+            const phrases = [
+                "Eww. You guys are gross.",
+                "Stop looking at each other.",
+                "Cringe alert. Cringe alert.",
+                "Happy Valentines I guess.",
+                "Get a room."
+            ];
+            
+            setInterval(() => {
+                const text = phrases[Math.floor(Math.random() * phrases.length)];
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.rate = 1.2; 
+                msg.pitch = 0.8; // Bored robot voice
+                window.speechSynthesis.speak(msg);
+            }, 4000);
+
+            // Annoying Airhorn-ish sound
+            setInterval(() => {
+                if(Math.random() > 0.7) playTone(150, 'sawtooth', 0.2);
+            }, 500);
+        }
+
+        function playTone(freq, type, vol) {
+            if(!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(freq - 100, audioCtx.currentTime + 0.3);
+            gain.gain.value = vol;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        function playNoise() {
+            // Fart noise generator (Sawtooth drop)
+            if(!audioCtx) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.5);
+            gain.gain.value = 0.5; 
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.5);
+        }
+
+        // --- D. STALKER CAM (SIMP DETECTOR) ---
+        function startStalker() {
+            const cam = document.getElementById('cam-container');
+            document.addEventListener('mousemove', (e) => {
+                // Follows mouse to block view
+                cam.style.left = (e.clientX + 20) + 'px'; 
+                cam.style.top = (e.clientY + 20) + 'px';
+                
+                // Trail
+                if(Math.random() > 0.6) {
+                    const el = document.createElement('div');
+                    el.style.position = 'fixed';
+                    el.style.left = e.clientX + 'px';
+                    el.style.top = e.clientY + 'px';
+                    el.innerText = "🤮";
+                    el.style.fontSize = "30px";
+                    el.style.pointerEvents = "none";
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 1000);
+                }
+            });
+        }
+
+        // --- E. JUNK GENERATOR ---
+        function generateCringeJunk() {
+            const container = document.getElementById('hell-container');
+            const words = ["SIMP", "CRINGE", "EWW", "GROSS", "NO PDA", "STOP"];
+            
+            for(let i=0; i<300; i++) {
+                const el = document.createElement('div');
+                el.style.position = 'absolute';
+                el.style.left = Math.random() * 200 + 'vw';
+                el.style.top = Math.random() * 200 + 'vh';
+                el.style.transform = `rotate(${Math.random()*360}deg)`;
+                el.style.fontSize = "20px";
+                el.style.fontWeight = "bold";
+                el.style.color = "blue";
+                el.innerHTML = `
+                    ${words[Math.floor(Math.random()*words.length)]}<br>
+                    <span style="font-size:40px">💔</span>
+                `;
+                container.appendChild(el);
+            }
+        }
+
+        // --- F. POPUPS ---
+        function createPopup() {
+            const p = document.createElement('div');
+            p.className = 'error-popup';
+            p.style.left = Math.random() * (window.innerWidth - 300) + 'px';
+            p.style.top = Math.random() * (window.innerHeight - 200) + 'px';
+            
+            const msgs = [
+                "ARE YOU KISSING???", 
+                "STOP BEING CUTE", 
+                "PDA DETECTED: PLEASE STOP", 
+                "ERROR: 404 SINGLE LIFE NOT FOUND",
+                "THIRD WHEEL PROTOCOL INITIATED"
+            ];
+            
+            p.innerHTML = `
+                <div style="background:red; color:white;">ALERT</div>
+                <br><b>${msgs[Math.floor(Math.random()*msgs.length)]}</b><br><br>
+                <button onclick="multiplyPopup(this)">I AM SORRY</button>
+            `;
+            document.body.appendChild(p);
+        }
+
+        window.multiplyPopup = function(btn) {
+            btn.closest('.error-popup').remove();
+            createPopup();
+            createPopup();
+            playNoise(); 
+        };
+
+        function startPopups() {
+            setInterval(createPopup, 2000);
+        }
+
+    </script>
+</body>
+</html>
