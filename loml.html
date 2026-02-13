@@ -3,236 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine's Day ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+    <title>My Valentine ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. SETTING THE MOOD --- */
+        /* --- 1. ATMOSPHERE --- */
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            background-color: #ffe4e1; /* Misty Rose */
-            background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
-            font-family: 'Nunito', sans-serif;
-            color: #555;
+            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+            font-family: 'Quicksand', sans-serif;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: #5a2a2a;
         }
 
-        /* --- 2. FLOATING HEARTS BACKGROUND --- */
-        .bg-heart {
+        /* Falling Petals Animation */
+        .petal {
             position: fixed;
             top: -10vh;
-            background-color: rgba(255, 255, 255, 0.4);
-            width: 20px;
-            height: 20px;
-            transform: rotate(45deg);
-            animation: fly 15s linear infinite;
+            background-color: #ffb7b2;
+            width: 15px;
+            height: 15px;
+            border-radius: 15px 0px 15px 0px;
             z-index: 0;
+            opacity: 0.8;
+            animation: fall linear infinite;
         }
-        .bg-heart::before, .bg-heart::after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-        }
-        .bg-heart::before { top: -10px; left: 0; }
-        .bg-heart::after { top: 0; left: -10px; }
-
-        @keyframes fly {
-            0% { top: 110vh; transform: rotate(45deg) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            100% { top: -10vh; transform: rotate(45deg) translateX(100px); opacity: 0; }
+        
+        @keyframes fall {
+            0% { top: -10vh; transform: translateX(0) rotate(0deg); opacity: 1; }
+            100% { top: 110vh; transform: translateX(100px) rotate(360deg); opacity: 0; }
         }
 
-        /* --- 3. MAIN CONTAINER (Glassmorphism) --- */
+        /* --- 2. MUSIC PLAYER --- */
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: 1px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .music-player:hover { transform: scale(1.05); background: white; }
+        .icon-play { width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid #ff4d4d; }
+
+        /* --- 3. MAIN CONTAINER --- */
         .container {
-            position: relative;
             z-index: 10;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 50px 20px;
+            width: 90%;
             max-width: 600px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-top: 50px;
             text-align: center;
-            animation: fadeIn 2s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #d63384;
+            font-family: 'Parisienne', cursive;
+            font-size: 4rem;
+            color: #d81b60;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
+            animation: float 3s ease-in-out infinite;
         }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        /* --- 4. THE POLAROID GALLERY --- */
+        /* --- 4. THE INTERACTIVE ENVELOPE --- */
+        .envelope-wrapper {
+            position: relative;
+            height: 300px; /* Adjust based on content */
+            margin: 50px auto;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: #ff8fa3;
+            margin: 0 auto;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 5;
+            transition: transform 0.5s;
+        }
+
+        .envelope::after { /* Left/Right Folds */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid #ff758f;
+            border-right: 150px solid #ff758f;
+            border-top: 100px solid transparent;
+            border-bottom: 100px solid #ff5d7a;
+            border-radius: 0 0 10px 10px;
+            z-index: 6;
+        }
+
+        .lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid #ff8fa3; /* Top Flap Color */
+            transform-origin: top;
+            transition: transform 0.5s ease, z-index 0.5s;
+            z-index: 7;
+        }
+
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 270px;
+            height: 180px;
+            background: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.6s ease;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .letter p {
+            font-family: 'Parisienne', cursive;
+            font-size: 1.5rem;
+            color: #d81b60;
+            margin: 0;
+        }
+
+        /* Open State */
+        .envelope-wrapper.open .lid {
+            transform: rotateX(180deg);
+            z-index: 3;
+        }
+        
+        .envelope-wrapper.open .letter {
+            transform: translateY(-150px);
+            z-index: 8; /* Bring letter to front */
+        }
+        
+        .click-hint {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #d81b60;
+            opacity: 0.8;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* --- 5. PHOTO GALLERY --- */
         .gallery {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin: 30px 0;
+            margin-top: 50px;
         }
-
-        .polaroid {
+        
+        .photo-card {
             background: white;
-            padding: 10px 10px 30px 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transform: rotate(-3deg);
-            transition: transform 0.3s ease;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+            width: 140px;
         }
-
-        .polaroid:nth-child(even) {
-            transform: rotate(3deg);
-        }
-
-        .polaroid:hover {
-            transform: scale(1.05) rotate(0deg);
-            z-index: 5;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .polaroid img {
-            width: 150px;
-            height: 150px;
+        .photo-card:nth-child(even) { transform: rotate(2deg); }
+        .photo-card:hover { transform: scale(1.1) rotate(0deg); z-index: 10; }
+        
+        .photo-card img {
+            width: 100%;
+            height: 140px;
             object-fit: cover;
             border: 1px solid #eee;
         }
 
-        /* --- 5. THE TIMER --- */
-        .timer-box {
-            background: #d63384;
-            color: white;
+        /* --- 6. TIMER --- */
+        .timer-container {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.6);
             padding: 20px;
             border-radius: 15px;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
-        }
-
-        .timer {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .time-unit {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .label {
-            font-size: 0.8rem;
-            font-weight: normal;
-            opacity: 0.9;
-        }
-
-        /* --- 6. FOOTER --- */
-        .footer {
-            margin-top: 30px;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            color: #888;
+            border: 1px solid white;
         }
         
-        .btn-restart {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: transparent;
-            border: 2px solid #d63384;
-            color: #d63384;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
+        .timer {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d81b60;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
         }
-        .btn-restart:hover {
-            background: #d63384;
-            color: white;
-        }
+        .t-unit { display: flex; flex-direction: column; }
+        .t-label { font-size: 0.8rem; font-weight: 300; color: #555; }
 
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
     </style>
 </head>
 <body>
 
-    <div id="hearts-container"></div>
+    <div id="petals-container"></div>
+
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-player" onclick="toggleMusic()">
+        <div class="icon-play" id="play-icon"></div>
+        <span id="play-text">Play Our Song</span>
+    </div>
 
     <div class="container">
         <h1>Happy Valentine's Day</h1>
-        <p>
-            Sorry for the prank earlier! 😜 <br>
-            But seriously, you survived the chaos, just like we survive everything else.
-        </p>
+        <p>You survived the chaos. Now here is the truth.</p>
+
+        <div class="envelope-wrapper" onclick="toggleEnvelope(this)">
+            <div class="envelope">
+                <div class="lid"></div>
+                <div class="letter">
+                    <p>To my favorite person,</p>
+                    <p>Life with you is my favorite adventure.</p>
+                    <p>I love you! ❤️</p>
+                </div>
+            </div>
+            <div class="click-hint">Click to Open</div>
+        </div>
 
         <div class="gallery">
-            <div class="polaroid">
-                <img src="https://placehold.co/150x150/pink/white?text=Us+1" alt="Cute Photo">
+            <div class="photo-card">
+                <img src="https://placehold.co/150x150/pink/white?text=Cutie+1" alt="Us">
             </div>
-            <div class="polaroid">
-                <img src="https://placehold.co/150x150/red/white?text=Us+2" alt="Cute Photo">
+            <div class="photo-card">
+                <img src="https://placehold.co/150x150/red/white?text=Cutie+2" alt="Us">
             </div>
-            <div class="polaroid">
-                <img src="https://placehold.co/150x150/orange/white?text=Us+3" alt="Cute Photo">
+            <div class="photo-card">
+                <img src="https://placehold.co/150x150/orange/white?text=Cutie+3" alt="Us">
             </div>
         </div>
 
-        <p>
-            You are my favorite person to annoy, my partner in crime, and the best thing that ever happened to me.
-        </p>
-
-        <div class="timer-box">
-            <div>We've been annoying each other for:</div>
-            <div class="timer" id="timer">
-                </div>
+        <div class="timer-container">
+            <div style="margin-bottom: 10px;">We've been together for:</div>
+            <div class="timer" id="timer"></div>
         </div>
 
-        <div class="footer">
-            Forever & Always ❤️
-        </div>
-        
-        <button class="btn-restart" onclick="window.history.back()">See the Prank Again</button>
+        <br><br>
     </div>
 
     <script>
-        // --- 1. FLOATING HEARTS GENERATOR ---
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartCount = 20;
+        // --- 1. ENVELOPE LOGIC ---
+        function toggleEnvelope(element) {
+            element.classList.toggle('open');
+        }
 
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'bg-heart';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
-                heart.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(heart);
+        // --- 2. PETAL RAIN ---
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            const petalCount = 30;
+            const colors = ['#ffc3a0', '#ffafbd', '#ff9a9e', '#fecfef'];
+
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(petal);
             }
         }
-        createHearts();
+        createPetals();
 
-        // --- 2. RELATIONSHIP TIMER ---
-        // CHANGE THIS DATE TO YOUR FRIEND'S ANNIVERSARY
-        const startDate = new Date("2023-02-14"); // YYYY-MM-DD
+        // --- 3. MUSIC PLAYER ---
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const text = document.getElementById('play-text');
+            const icon = document.getElementById('play-icon');
+
+            if (audio.paused) {
+                audio.play();
+                text.innerText = "Pause Song";
+                icon.style.borderLeft = "4px solid #ff4d4d";
+                icon.style.height = "12px";
+                icon.style.borderTop = "0";
+                icon.style.borderBottom = "0";
+                icon.style.borderRight = "4px solid #ff4d4d";
+                icon.style.width = "4px";
+            } else {
+                audio.pause();
+                text.innerText = "Play Our Song";
+                // Reset play icon
+                icon.style = ""; 
+            }
+        }
+
+        // --- 4. RELATIONSHIP TIMER ---
+        // *** IMPORTANT: CHANGE THIS DATE ***
+        const startDate = new Date("2023-01-01"); 
 
         function updateTimer() {
             const now = new Date();
@@ -244,15 +336,14 @@
             const seconds = Math.floor((diff / 1000) % 60);
 
             document.getElementById('timer').innerHTML = `
-                <div class="time-unit">${days}<span class="label">Days</span></div>
-                <div class="time-unit">${hours}<span class="label">Hrs</span></div>
-                <div class="time-unit">${minutes}<span class="label">Mins</span></div>
-                <div class="time-unit">${seconds}<span class="label">Secs</span></div>
+                <div class="t-unit">${days}<span class="t-label">Days</span></div>
+                <div class="t-unit">${hours}<span class="t-label">Hrs</span></div>
+                <div class="t-unit">${minutes}<span class="t-label">Mins</span></div>
+                <div class="t-unit">${seconds}<span class="t-label">Secs</span></div>
             `;
         }
-
         setInterval(updateTimer, 1000);
-        updateTimer(); // Run immediately
+        updateTimer();
 
     </script>
 </body>
