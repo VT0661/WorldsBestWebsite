@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>!!! CRITICAL ERROR: YOUR PC IS MELTING !!!</title>
+    <title>!!! SECURITY ALERT: USER IDENTIFIED !!!</title>
     <style>
-        /* --- 1. THE VISION KILLER BACKGROUND --- */
+        /* --- 1. THE VOMIT COMET BACKGROUND --- */
         body {
             margin: 0;
-            width: 300vw; /* Arngren Width */
-            height: 300vh; /* Arngren Height */
-            overflow: scroll; 
+            width: 300vw; /* Massive canvas */
+            height: 300vh;
+            overflow: scroll; /* Force manual scrolling */
             background-color: yellow;
-            /* Moire Pattern that vibrates */
+            /* Moire Pattern */
             background-image: 
                 repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 20px, #ff0000 20px, #ff0000 40px),
-                repeating-linear-gradient(45deg, #ffff00 0, #ffff00 10px, #ff00ff 10px, #ff00ff 20px);
+                repeating-linear-gradient(45deg, #ffff00 0, #ffff00 10px, #0000ff 10px, #0000ff 20px);
             background-blend-mode: difference;
-            background-size: 100px 100px;
-            cursor: none; /* Hide real cursor */
-            font-family: "Comic Sans MS", "Papyrus", serif;
+            background-size: 80px 80px;
+            cursor: none; /* Hide cursor */
+            font-family: "Comic Sans MS", "Wingdings", serif;
             
-            /* THE VOMIT COMET: Spin the whole page forever */
-            animation: spinWorld 15s linear infinite;
+            /* Spin the entire universe */
+            animation: spinWorld 20s linear infinite;
         }
 
         @keyframes spinWorld {
@@ -30,180 +30,183 @@
             100% { filter: hue-rotate(360deg); transform: rotate(360deg); }
         }
 
-        /* --- 2. THE TRAP OVERLAY (Must click to enter hell) --- */
+        /* --- 2. THE TRAP OVERLAY --- */
         #trap-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             background: black;
             color: red;
-            z-index: 2147483647; /* Max Z-index */
+            z-index: 2147483647;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            cursor: pointer;
+            cursor: help;
             text-align: center;
         }
 
-        /* --- 3. THE HYDRA POPUPS --- */
+        /* --- 3. THE REAL WEBCAM FEED --- */
+        #cam-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            height: 240px;
+            background: black;
+            border: 10px solid red;
+            z-index: 2000000;
+            box-shadow: 0 0 50px red;
+            animation: pulseCam 1s infinite;
+        }
+
+        #real-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: invert(100%) contrast(150%); /* Make the user look scary */
+            transform: scaleX(-1); /* Mirror effect */
+        }
+
+        @keyframes pulseCam {
+            0% { border-color: red; }
+            50% { border-color: black; }
+            100% { border-color: red; }
+        }
+
+        /* --- 4. THE LEGAL FOOTNOTE --- */
+        #legal-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            color: grey;
+            font-size: 6px; /* Legally illegible */
+            z-index: 2147483646;
+            border-top: 1px solid black;
+            padding: 2px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* --- 5. THE HYDRA POPUPS --- */
         .error-popup {
             position: fixed;
-            width: 300px;
-            background: #c0c0c0; /* Windows 95 Grey */
-            border: 5px outset white;
+            width: 280px;
+            background: #c0c0c0;
+            border: 4px outset white;
             padding: 5px;
-            z-index: 999999;
+            z-index: 1000000;
             box-shadow: 10px 10px 20px black;
             font-family: Arial, sans-serif;
-            animation: shake 0.5s infinite;
         }
 
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
-        }
-
-        /* --- 4. THE JUNK ITEMS (Chaos Layout) --- */
-        .junk-item {
+        /* --- 6. PERMANENT CURSOR TRAIL --- */
+        .trail-dot {
             position: absolute;
-            border: 3px solid blue;
+            width: 10px; height: 10px;
             background: lime;
-            padding: 5px;
-            font-size: 10px;
-            max-width: 150px;
-            z-index: 100;
-        }
-        .junk-item:hover {
-            z-index: 9999999;
-            transform: scale(5) rotate(45deg);
-            background: magenta;
+            pointer-events: none;
+            z-index: 99999999;
         }
 
-        /* --- 5. THE BSOD FLASH --- */
+        /* --- 7. BSOD --- */
         #bsod {
-            display: none;
-            position: fixed;
+            display: none; position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #0000AA;
-            color: white;
-            font-family: monospace;
-            z-index: 2000000000;
-            padding: 50px;
-            font-size: 24px;
+            background: #0000AA; color: white;
+            font-family: monospace; z-index: 2147483645;
+            padding: 50px; font-size: 24px;
             cursor: none;
         }
-
-        /* --- 6. FIXED UI HORRORS --- */
-        #keylogger {
-            position: fixed; bottom: 0; width: 100%;
-            background: red; color: yellow;
-            font-size: 40px; font-weight: bold;
-            text-align: center; z-index: 1000000;
-            border-top: 5px solid black;
-        }
-
-        #webcam-box {
-            position: fixed; top: 10px; right: 10px;
-            width: 200px; background: black; color: lime;
-            border: 3px solid red; z-index: 900000;
-            padding: 5px; font-family: monospace;
-        }
-
-        /* --- 7. CURSOR SWARM --- */
-        .swarm-unit {
-            position: absolute; width: 20px; height: 20px;
-            background: red; border-radius: 50%;
-            pointer-events: none; z-index: 99999999;
-        }
-
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <div id="trap-overlay" onclick="activateHell()">
-        <h1 style="font-size: 80px; text-decoration: blink;">⚠️ DANGER ⚠️</h1>
-        <h2>CLICK TO VERIFY YOU ARE HUMAN</h2>
-        <h3>(Do not turn off your sound)</h3>
+        <h1 style="font-size: 80px; text-decoration: blink;">⚠️ CRITICAL ALERT ⚠️</h1>
+        <h2>IDENTITY VERIFICATION REQUIRED</h2>
+        <h3>CLICK TO ALLOW CAMERA ACCESS</h3>
+        <p>(We definitely won't sell your soul)</p>
+    </div>
+
+    <div id="cam-container">
+        <video id="real-video" autoplay playsinline muted></video>
+        <div style="position:absolute; top:5px; left:5px; color:red; font-family:monospace; font-weight:bold; background:black;">🔴 REC: TARGET_01</div>
     </div>
 
     <div id="bsod">
-        FATAL EXCEPTION 0E.
+        STOP: 0x0000000A (0x00000000, 0x00000002, 0x00000001, 0x80443209)
         <br><br>
-        SYSTEM HALTED.
+        IRQL_NOT_LESS_OR_EQUAL
         <br><br>
-        DELETING C:\WINDOWS\SYSTEM32...
-    </div>
-
-    <div id="keylogger">LISTENING TO KEYSTROKES...</div>
-    
-    <div id="webcam-box">
-        <b>REC: CAM_01</b><br>
-        <div style="width:100%; height:100px; background:#222; display:flex; align-items:center; justify-content:center;">🔴</div>
-        UPLOADING...
+        BEGINNING DUMP OF PHYSICAL MEMORY...
     </div>
 
     <div style="position: fixed; top: 0; width: 100%; z-index: 900000; background: black; color: lime;">
-        <marquee scrollamount="50" direction="right">
-            <h1>DOWNLOAD RAM --- CLICK FOR PRIZE --- HOT SINGLES --- VIRUS DETECTED --- ERROR 404</h1>
+        <marquee scrollamount="60" direction="right">
+            <h1>YOUR IP ADDRESS IS: 192.168.1.1 --- UPLOADING TO DARK WEB --- DOWNLOAD RAM --- VIRUS DETECTED</h1>
         </marquee>
     </div>
 
-    <div style="position: fixed; bottom: 100px; left: 50px; background: white; padding: 20px; border: 5px double blue; z-index: 80000;">
-        <b>ENTER CREDIT CARD:</b><br>
-        <input type="text" oninput="this.value=''" placeholder="Typing is disabled..."><br><br>
-        <button onmouseover="runaway(this)" style="position:relative;">SUBMIT</button>
+    <div id="legal-footer">
+        <marquee scrollamount="2">
+            LEGAL DISCLAIMER: By accessing this website (the "Hellscape"), you (the "Victim") agree to forfeit all rights to your sanity, CPU cycles, and visual cortex. 
+            The Victim acknowledges that the "Webcam Feed" is real and that the "Screaming Audio" is necessary for the User Experience (UX). 
+            We are not responsible for seizures, broken monitors, or spiritual possession. 
+            Data collected includes: Your fear, your keystrokes, and the contents of your clipboard. 
+            If you attempt to close this tab, you agree to owe us one (1) firstborn child or equivalent cryptocurrency. 
+            Copyright © 1999-2025 Bad Design Corp. All wrongs reserved.
+        </marquee>
     </div>
 
     <div id="chaos-container"></div>
 
     <script>
-        // --- A. THE ACTIVATION (FULLSCREEN + AUDIO) ---
-        function activateHell() {
+        // --- A. ACTIVATION & WEBCAM ---
+        async function activateHell() {
             document.getElementById('trap-overlay').style.display = 'none';
             
-            // Force Fullscreen
+            // 1. Force Fullscreen
             const elem = document.documentElement;
             if (elem.requestFullscreen) elem.requestFullscreen();
 
-            // Start all systems
+            // 2. ENABLE REAL WEBCAM
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const video = document.getElementById('real-video');
+                video.srcObject = stream;
+            } catch (err) {
+                alert("CAMERA ACCESS DENIED. INITIATING SELF-DESTRUCT SEQUENCE...");
+            }
+
+            // 3. Start Engines
             initAudio();
             generateJunk();
-            startSwarm();
             startPopups();
-            startLag();
+            startTrail();
             
-            // Global Click Listener for Screaming
+            // Global Click for Scream
             document.addEventListener('mousedown', playScream);
             
             // Scroll Hijacking
             setInterval(() => {
-                if(Math.random() > 0.8) window.scrollBy(0, Math.random() * 500 - 250);
-            }, 1000);
+                if(Math.random() > 0.85) window.scrollBy(Math.random()*100 - 50, Math.random()*100 - 50);
+            }, 800);
         }
 
-        // --- B. THE AUDIO TORTURE (Web Audio API) ---
+        // --- B. AUDIO TORTURE ---
         let audioCtx;
         function initAudio() {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             
-            // 1. Robotic Voice Loop
-            const msg = new SpeechSynthesisUtterance("Critical Error. Virus Detected. I see you.");
-            msg.rate = 1.5; msg.pitch = 0.1;
-            setInterval(() => window.speechSynthesis.speak(msg), 4000);
+            // TTS Voice
+            const msg = new SpeechSynthesisUtterance("I can see you. Why are you hiding?");
+            msg.rate = 0.8; msg.pitch = 0.1;
+            setInterval(() => window.speechSynthesis.speak(msg), 6000);
 
-            // 2. Random Beeps
+            // Random Beeps
             setInterval(() => {
-                if(Math.random() > 0.7) playTone(100 + Math.random() * 2000, 'square', 0.1);
-            }, 300);
+                if(Math.random() > 0.8) playTone(400 + Math.random() * 1000, 'sawtooth', 0.05);
+            }, 400);
         }
 
         function playTone(freq, type, vol) {
@@ -216,46 +219,54 @@
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.1);
+            osc.stop(audioCtx.currentTime + 0.2);
         }
 
         function playScream() {
             if(!audioCtx) return;
-            // The "Sawtooth" drop (Sounds like a bomb falling)
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.4);
-            gain.gain.value = 0.3; // Loud enough to annoy, quiet enough to not blow speakers
+            // Start high, drop low (bomb whistle)
+            osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.5);
+            gain.gain.value = 0.2; 
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.4);
+            osc.stop(audioCtx.currentTime + 0.5);
         }
 
         // --- C. ARNGREN CHAOS GENERATOR ---
         function generateJunk() {
             const container = document.getElementById('chaos-container');
-            const words = ["BUY", "CLICK", "ERROR", "SCAM", "FREE", "XXX", "WIN"];
+            const words = ["ERROR", "404", "SCAM", "BUY", "CLICK", "VIRUS"];
             
-            for(let i=0; i<400; i++) {
+            for(let i=0; i<300; i++) {
                 const el = document.createElement('div');
-                el.className = 'junk-item';
+                el.style.position = 'absolute';
+                el.style.border = '2px solid blue';
+                el.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
                 el.style.left = Math.random() * 290 + 'vw';
                 el.style.top = Math.random() * 290 + 'vh';
-                el.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+                el.style.padding = '5px';
+                el.style.zIndex = '100';
                 
                 el.innerHTML = `
                     <b>${words[Math.floor(Math.random()*words.length)]}</b><br>
-                    <img src="https://placehold.co/60x60?text=JUNK" border="1"><br>
-                    <a href="#">LINK ${i}</a>
+                    <img src="https://placehold.co/50x50?text=NO" border="1">
                 `;
+                
+                // Make them jitter
+                setInterval(() => {
+                    if(Math.random() > 0.9) el.style.left = Math.random() * 290 + 'vw';
+                }, 5000);
+                
                 container.appendChild(el);
             }
         }
 
-        // --- D. THE HYDRA POPUPS (Uncloseable) ---
+        // --- D. THE HYDRA POPUPS ---
         function createPopup() {
             const p = document.createElement('div');
             p.className = 'error-popup';
@@ -264,13 +275,10 @@
             
             p.innerHTML = `
                 <div style="background:navy; color:white; font-weight:bold; padding:2px;">
-                    SYSTEM ERROR 0x${Math.floor(Math.random()*999)}
+                    SYSTEM FAILURE
                     <button style="float:right" onclick="multiplyPopup(this)">X</button>
                 </div>
-                <center>
-                    <br><h3>FATAL EXCEPTION</h3><br>
-                    <button onclick="multiplyPopup(this)">OK</button>
-                </center>
+                <center><br><b>FATAL ERROR</b><br><br><button onclick="multiplyPopup(this)">OK</button></center>
             `;
             document.body.appendChild(p);
         }
@@ -278,64 +286,38 @@
         window.multiplyPopup = function(btn) {
             btn.closest('.error-popup').remove();
             createPopup();
-            createPopup(); // Spawn 2
-            playScream(); // Punish
+            createPopup();
+            playScream(); 
         };
 
         function startPopups() {
-            setInterval(createPopup, 3000);
+            setInterval(createPopup, 3500);
         }
 
-        // --- E. THE SWARM (Cursor Chasers) ---
-        function startSwarm() {
-            const swarm = [];
-            for(let i=0; i<30; i++) {
-                const div = document.createElement('div');
-                div.className = 'swarm-unit';
-                document.body.appendChild(div);
-                swarm.push({el: div, delay: i*2});
-            }
+        // --- E. PERMANENT CURSOR TRAIL ---
+        function startTrail() {
             document.addEventListener('mousemove', (e) => {
-                swarm.forEach(unit => {
-                    setTimeout(() => {
-                        unit.el.style.left = (e.pageX + Math.random()*50 - 25) + 'px';
-                        unit.el.style.top = (e.pageY + Math.random()*50 - 25) + 'px';
-                    }, unit.delay * 10);
-                });
+                // Don't do it every single frame (save a little CPU)
+                if(Math.random() > 0.3) {
+                    const dot = document.createElement('div');
+                    dot.className = 'trail-dot';
+                    dot.style.left = e.pageX + 'px';
+                    dot.style.top = e.pageY + 'px';
+                    dot.style.backgroundColor = (Math.random() > 0.5) ? 'lime' : 'red';
+                    document.body.appendChild(dot);
+                    
+                    // We DO NOT remove them. They stack forever.
+                    // This is the "Paint" feature.
+                }
             });
         }
 
-        // --- F. PERFORMANCE & PSYCHOLOGY ---
-        
-        // 1. Lag Engine (CPU Waste)
-        function startLag() {
-            setInterval(() => {
-                let x = 0;
-                for(let i=0; i<1000000; i++) { x = Math.sqrt(i * Math.random()); }
-            }, 200);
-        }
-
-        // 2. Keylogger Display
-        document.addEventListener('keydown', (e) => {
-            const bar = document.getElementById('keylogger');
-            bar.innerText = `SENDING "${e.key.toUpperCase()}" TO FBI...`;
-            bar.style.backgroundColor = (Math.random()>0.5) ? 'blue' : 'red';
-            playTone(800, 'sawtooth', 0.1);
-        });
-
-        // 3. Runaway Button
-        window.runaway = function(btn) {
-            btn.style.position = 'absolute';
-            btn.style.left = Math.random() * 300 + 'px';
-            btn.style.top = Math.random() * 300 + 'px';
-        };
-
-        // 4. Random BSOD Trigger
+        // --- F. BSOD TRIGGER ---
         setInterval(() => {
-            if(Math.random() > 0.92) {
+            if(Math.random() > 0.94) {
                 const bsod = document.getElementById('bsod');
                 bsod.style.display = 'block';
-                setTimeout(() => bsod.style.display='none', 2000);
+                setTimeout(() => bsod.style.display='none', 3000);
             }
         }, 2000);
 
