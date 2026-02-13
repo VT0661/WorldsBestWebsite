@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. SETTING THE MOOD --- */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background-color: #ffe4e1; /* Misty Rose */
+            background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+            font-family: 'Nunito', sans-serif;
+            color: #555;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- 2. FLOATING HEARTS BACKGROUND --- */
+        .bg-heart {
+            position: fixed;
+            top: -10vh;
+            background-color: rgba(255, 255, 255, 0.4);
+            width: 20px;
+            height: 20px;
+            transform: rotate(45deg);
+            animation: fly 15s linear infinite;
+            z-index: 0;
+        }
+        .bg-heart::before, .bg-heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+        .bg-heart::before { top: -10px; left: 0; }
+        .bg-heart::after { top: 0; left: -10px; }
+
+        @keyframes fly {
+            0% { top: 110vh; transform: rotate(45deg) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            100% { top: -10vh; transform: rotate(45deg) translateX(100px); opacity: 0; }
+        }
+
+        /* --- 3. MAIN CONTAINER (Glassmorphism) --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 20px;
+            max-width: 600px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d63384;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* --- 4. THE POLAROID GALLERY --- */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 5;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .polaroid img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        /* --- 5. THE TIMER --- */
+        .timer-box {
+            background: #d63384;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        /* --- 6. FOOTER --- */
+        .footer {
+            margin-top: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #888;
+        }
+        
+        .btn-restart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #d63384;
+            color: #d63384;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-restart:hover {
+            background: #d63384;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <h1>Happy Valentine's Day</h1>
+        <p>
+            Sorry for the prank earlier! 😜 <br>
+            But seriously, you survived the chaos, just like we survive everything else.
+        </p>
+
+        <div class="gallery">
+            <div class="polaroid">
+                <img src="https://placehold.co/150x150/pink/white?text=Us+1" alt="Cute Photo">
+            </div>
+            <div class="polaroid">
+                <img src="https://placehold.co/150x150/red/white?text=Us+2" alt="Cute Photo">
+            </div>
+            <div class="polaroid">
+                <img src="https://placehold.co/150x150/orange/white?text=Us+3" alt="Cute Photo">
+            </div>
+        </div>
+
+        <p>
+            You are my favorite person to annoy, my partner in crime, and the best thing that ever happened to me.
+        </p>
+
+        <div class="timer-box">
+            <div>We've been annoying each other for:</div>
+            <div class="timer" id="timer">
+                </div>
+        </div>
+
+        <div class="footer">
+            Forever & Always ❤️
+        </div>
+        
+        <button class="btn-restart" onclick="window.history.back()">See the Prank Again</button>
+    </div>
+
+    <script>
+        // --- 1. FLOATING HEARTS GENERATOR ---
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 20;
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        // --- 2. RELATIONSHIP TIMER ---
+        // CHANGE THIS DATE TO YOUR FRIEND'S ANNIVERSARY
+        const startDate = new Date("2023-02-14"); // YYYY-MM-DD
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('timer').innerHTML = `
+                <div class="time-unit">${days}<span class="label">Days</span></div>
+                <div class="time-unit">${hours}<span class="label">Hrs</span></div>
+                <div class="time-unit">${minutes}<span class="label">Mins</span></div>
+                <div class="time-unit">${seconds}<span class="label">Secs</span></div>
+            `;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Run immediately
+
+    </script>
+</body>
+</html>
